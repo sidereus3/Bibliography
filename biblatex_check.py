@@ -31,34 +31,18 @@ libraries = [("Scholar", "http://scholar.google.de/scholar?hl=en&q="),
 # fields that are required for a specific type of entry
 requiredFields = {"article": ["author", "title", "journal", "year/date"],
                   "book": ["author", "title", "year/date"],
-                  "mvbook": "book",
                   "inbook": ["author", "title", "booktitle", "year/date"],
-                  "bookinbook": "inbook",
-                  "suppbook": "inbook",
                   "booklet": ["author/editor", "title", "year/date"],
-                  "collection": ["editor", "title", "year/date"],
-                  "mvcollection": "collection",
                   "incollection": ["author", "title", "booktitle", "year/date"],
-                  "suppcollection": "incollection",
                   "manual": ["author/editor", "title", "year/date"],
+                  "mastersthesis": ["author", "title", "school", "year/date"],
                   "misc": ["author/editor", "title", "year/date"],
-                  "online": ["author/editor", "title", "year/date", "url"],
-                  "patent": ["author", "title", "number", "year/date"],
-                  "periodical": ["editor", "title", "year/date"],
-                  "suppperiodical": "article",
                   "proceedings": ["title", "year/date"],
-                  "mvproceedings": "proceedings",
                   "inproceedings": ["author", "title", "booktitle", "year/date"],
-                  "reference": "collection",
-                  "mvreference": "collection",
-                  "inreference": "incollection",
-                  "report": ["author", "title", "type", "institution", "year/date"],
-                  "thesis": ["author", "title", "type", "institution", "year/date"],
+                  "techreport": ["author", "title", "institution", "year/date"],
                   "unpublished": ["author", "title", "year/date"],
 
                   # semi aliases (differing fields)
-                  "mastersthesis": ["author", "title", "institution", "year/date"],
-                  "techreport": ["author", "title", "institution", "year/date"],
 
                   # other aliases
                   "conference": "inproceedings",
@@ -270,7 +254,7 @@ for line in fIn:
                             "wrong field: bibtex uses journal, not journaltitle")
                         counterWrongFieldNames += 1
 
-                    if "." in line:
+                    if "." in line and not "CIT." in line:
                         subproblems.append(
                             "flawed name: abbreviated journal title '" + value + "'")
                         counterFlawedNames += 1
