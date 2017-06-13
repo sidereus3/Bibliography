@@ -29,7 +29,7 @@ libraries = [("Scholar", "http://scholar.google.de/scholar?hl=en&q="),
 
 
 # fields that are required for a specific type of entry
-requiredFields = {"article": ["author", "title", "journaltitle", "year/date"],
+requiredFields = {"article": ["author", "title", "journal", "year/date"],
                   "book": ["author", "title", "year/date"],
                   "mvbook": "book",
                   "inbook": ["author", "title", "booktitle", "year/date"],
@@ -221,7 +221,7 @@ for line in fIn:
                 problem += "<li>" + subproblem + "</li>"
             problem += "</ul>"
             problem += "<form class='problem_control'><label>checked</label><input type='checkbox' class='checked'/></form>"
-            problem += "<div class='bibtex_toggle'>Current BibLaTex Entry</div>"
+            problem += "<div class='bibtex_toggle'>Current BibTeX Entry</div>"
             problem += "<div class='bibtex'>" + completeEntry + "</div>"
             problem += "</div>"
             problems.append(problem)
@@ -265,9 +265,9 @@ for line in fIn:
                 # check if abbreviations are used in journal titles
                 if currentType == "article" and (field == "journal" or field == "journaltitle"):
 
-                    if field == "journal":
+                    if field == "journaltitle":
                         subproblems.append(
-                            "wrong field: biblatex uses journaltitle, not journal")
+                            "wrong field: bibtex uses journal, not journaltitle")
                         counterWrongFieldNames += 1
 
                     if "." in line:
